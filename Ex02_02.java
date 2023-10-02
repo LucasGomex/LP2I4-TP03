@@ -3,29 +3,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *  * Lucas Gomes dos Santos e Rodrigo Braga
- */
+//Lucas Gomes e Rodrigo Ribeiro
+
 class Pessoa {
-    private static int kp = 0; 
+    private static int kp = 0;
     private String nome;
     private char sexo;
     private int idade;
 
-    
     public Pessoa() {
-        kp++; 
+        kp++;
     }
 
-    
     public Pessoa(String nome, char sexo, int idade) {
         this.nome = nome;
         this.sexo = sexo;
         this.idade = idade;
-        kp++; 
+        kp++;
     }
 
-    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -38,7 +34,6 @@ class Pessoa {
         this.idade = idade;
     }
 
-    
     public int getKp() {
         return kp;
     }
@@ -56,39 +51,36 @@ class Pessoa {
     }
 }
 
-public class Ex02_02 extends JFrame {
+public class FormularioPessoa extends JFrame {
     private JLabel lblNome, lblSexo, lblIdade, lblNumero;
     private JTextField txtNome, txtIdade, txtNumero;
     private JButton btnOK, btnLimpar, btnMostrar, btnSair;
     private JComboBox<String> cmbSexo;
 
-    private Pessoa UmaPessoa = null;
+    private Pessoa umaPessoa = null;
 
-    public Ex02_02() {
+    public FormularioPessoa() {
         setTitle("Formulário de Pessoa");
         setSize(400, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         JPanel mainPanel = new JPanel(new GridLayout(6, 2));
-        
+
         lblNumero = new JLabel("Número:");
         txtNumero = new JTextField();
-        if (UmaPessoa == null) {
+        if (umaPessoa == null) {
             txtNumero.setText("1");
         } else {
-            txtNumero.setText(String.valueOf(this.UmaPessoa.getKp() + 1));
+            txtNumero.setText(String.valueOf(this.umaPessoa.getKp() + 1));
         }
         txtNumero.setEditable(false);
         lblNome = new JLabel("Nome:");
         txtNome = new JTextField();
         lblSexo = new JLabel("Sexo (M/F):");
         cmbSexo = new JComboBox<>(new String[]{"M", "F"});
-        
-        
-
         lblIdade = new JLabel("Idade:");
         txtIdade = new JTextField();
-        
+
         mainPanel.add(lblNumero);
         mainPanel.add(txtNumero);
         mainPanel.add(lblNome);
@@ -97,22 +89,22 @@ public class Ex02_02 extends JFrame {
         mainPanel.add(cmbSexo);
         mainPanel.add(lblIdade);
         mainPanel.add(txtIdade);
-        
+
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         btnOK = new JButton("OK");
         btnLimpar = new JButton("Limpar");
         btnMostrar = new JButton("Mostrar");
         btnSair = new JButton("Sair");
-        
+
         buttonPanel.add(btnOK);
         buttonPanel.add(btnLimpar);
         buttonPanel.add(btnMostrar);
         buttonPanel.add(btnSair);
-        
+
         add(mainPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
-        
+
         btnOK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,8 +116,8 @@ public class Ex02_02 extends JFrame {
                         return;
                     }
                     int idade = Integer.parseInt(txtIdade.getText());
-                    UmaPessoa = new Pessoa(nome, sexo, idade);
-                    txtNumero.setText(String.valueOf(UmaPessoa.getKp() + 1));
+                    umaPessoa = new Pessoa(nome, sexo, idade);
+                    txtNumero.setText(String.valueOf(umaPessoa.getKp() + 1));
                     txtNome.setText("");
                     cmbSexo.setSelectedIndex(0);
                     txtIdade.setText("");
@@ -148,12 +140,12 @@ public class Ex02_02 extends JFrame {
         btnMostrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (UmaPessoa != null) {
+                if (umaPessoa != null) {
                     StringBuilder mensagem = new StringBuilder();
-                    mensagem.append("Nome: ").append(UmaPessoa.getNome()).append("\n");
-                    mensagem.append("Sexo: ").append(UmaPessoa.getSexo()).append("\n");
-                    mensagem.append("Idade: ").append(UmaPessoa.getIdade()).append("\n");
-                    mensagem.append("Número de Pessoas: ").append(UmaPessoa.getKp()).append("\n");
+                    mensagem.append("Nome: ").append(umaPessoa.getNome()).append("\n");
+                    mensagem.append("Sexo: ").append(umaPessoa.getSexo()).append("\n");
+                    mensagem.append("Idade: ").append(umaPessoa.getIdade()).append("\n");
+                    mensagem.append("Número de Pessoas: ").append(umaPessoa.getKp()).append("\n");
                     JOptionPane.showMessageDialog(null, mensagem.toString());
                 } else {
                     JOptionPane.showMessageDialog(null, "Nenhum dado disponível.");
@@ -176,6 +168,6 @@ public class Ex02_02 extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Ex02_02();
+        new FormularioPessoa();
     }
 }
